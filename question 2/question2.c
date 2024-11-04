@@ -1,17 +1,18 @@
 /******************************************************************************
 
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
+Author: Paulo Ricardo Pabst
+Date:	03/11/2024
+Question 2
 
 *******************************************************************************/
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
 #include <conio.h>
 
+#define	DEBUG_MSG	1
 
 typedef enum {
     stSTART,
@@ -22,11 +23,13 @@ typedef enum {
                             performance on 32bit architures.*/
 } states_t;
 
-char *statesNames[] = { "START", "ON", "OFF", "PROTECTED" };
 
+char *statesNames[] = { "START", "ON", "OFF", "PROTECTED" };
 volatile states_t actualState;
 volatile states_t nextState;
 volatile int32_t buttonTimer;
+
+
 
 bool isButtonPressed(void) {
     
@@ -37,7 +40,10 @@ bool isButtonPressed(void) {
 // Timer set to 50ms interval.
 void isr_fsm_timer (void) {
     
+#ifdef DEBUG_MSG
     printf("%s\r\n", statesNames[actualState]);
+#endif
+
     switch(actualState) {
         case stSTART:
             nextState = stOFF;
@@ -63,7 +69,6 @@ void isr_fsm_timer (void) {
         default:
             // something went wrong...
             nextState = stSTART;
-        break;
     }
     actualState = nextState;
 }

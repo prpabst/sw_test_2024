@@ -1,11 +1,11 @@
 /******************************************************************************
 
-Welcome to GDB Online.
-  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
-  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
-  Code, Compile, Run and Debug online from anywhere in world.
+Author: Paulo Ricardo Pabst
+Date:	03/11/2024
+Question 3
 
 *******************************************************************************/
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -79,12 +79,13 @@ int main()
     ret = computeAvgMinMaxEvenArray(&in, &even, &avg, &min, &max);
     if(ret >= 0) {
     
+		printf("Original buffer data:\r\n");
         for(int ii=0; ii<in.size; ii++) {
-            
             printf("%02d ", in.buff[ii]);
         }
         printf("\r\n");
     
+		printf("Even values only:\r\n");
         for(int ii=0; ii<even.size; ii++) {
             
             printf("%02d ", even.buff[ii]);
